@@ -15,6 +15,17 @@ var blog = require('./routes/blog');
 
 var app = express();
 
+var connection_string = 'localhost/fritter';
+
+if (process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
+  connection_string = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ':' +
+        process.env.OPENSHIFT_MONGODB_DB_PASSWORD + '@' +
+        process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
+        process.env.OPENSHIFT_MONGODB_DB_PORT + '/fritter';
+}
+
+var db = monk(connection_string);
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -69,5 +80,8 @@ app.use(function(err, req, res, next) {
     });
 });
 
+var port = process.env.OPENSHIFT_NODEJS_PORT;
+var ip = process.env.OPENSHIFT_NODEJS_IP;
 
+app.listen(port || 8080, ip);
 module.exports = app;
