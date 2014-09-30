@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+        <title><%= title %></title>
+        <script src="http://code.jquery.com/jquery-latest.min.js"type="text/javascript"></script>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/material/ripples.css" rel="stylesheet">
+      <link href="/material/material.css" rel="stylesheet">
+        <link href="/icons/icons-material-design.css" rel="stylesheet">
+        <link href="//fezvrasta.github.io/snackbarjs/dist/snackbar.min.css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Gochi+Hand|Muli' rel='stylesheet' type='text/css'>
+         <style>
+            .navbar{
+                background-color: green;    
+            }
+            .navbar-brand{
+                font-family: Gochi Hand, sans-serif;
+                font-size: 50px;
+            }
+            .right{
+                text-align:right;    
+            }
+            .rightFloat{
+                float:right;
+            }
+            .horz{
+                display:inline-block;    
+            }
+            .editing{
+                font-size: 20px;
+                background-color: #FFF06A;
+                box-shadow: #FFF06A;
+            }
+            .input:focus{
+                back-ground-color:  #FFF06A;  
+            }
+         </style>
+  </head>
+  <body >
+      <div class="navbar navbar-inverse">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand">Freets!</a>
+    </div>
+    <div class="navbar-collapse collapse navbar-inverse-collapse">
+        <ul class="nav navbar-nav">
+            <li class="active"><a>Home</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/blog/logout">Logout</a></li>
+    </ul>     
+    </div>
+     
+    
+</div>
+    <div class="container-fluid">
+        <div class="row">
+            <div  class=" col-md-3">
+                    <div class=" well">
+                        <h1><%= fullname %></h1>
+                        <p class="lead"> <%= email%></p>
+                    </div>
+                    <div class=" well">
+                        <form class=" form-horizontal" action="/blog" method="post">
+                        <fieldset>
+                            <legend>Post a Freet!</legend>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <textarea class="form-control input" rows="3" id="textArea" name="freet" placeholder="Compose new Freet..."></textarea>
+                                </div>
+                            </div>
+                            <div class="right form-group">
+                                    <button class="btn btn-material-lightgreen">Post</button>
+                            </div>
+
+                        </form>
+                    </div>
+            </div>
+            <div  class=" col-md-9">
+                <div>
+                    <div class = "well">
+                        <h2 class="text-center">Freets</h2>
+                    </div>
+                    <% for(var i = 0; i < posts.length; i++){ %>
+    	               <div class = "well">
+                           <p class="text-success"><%=posts[i].fullname %></p>
+                           
+                               
+                               <% if (editID==posts[i]._id){ %>
+                                <form class=" form-horizontal right" action="/blog/edit/<%=posts[i]._id%>" method="post">
+                                <div>
+                                <textarea class="form-control editing" rows="3" id="textArea" name="changedFreet"><%= posts[i].body %></textarea>
+                                </div>
+                                
+                               <%} else{%>
+                           <blockquote>
+                               <%console.log(posts[i]._id)%>
+                               <p id= "toChange"><%= posts[i].body %></p>
+                               <small><%= posts[i].date %></small>
+                           </blockquote>
+                               <%}%>
+                               
+                               
+                           
+                           <% if (posts[i].fullname == fullname ){%>
+                               <div class="right">
+                               
+                               
+                                   <% if (editID==posts[i]._id){ %>
+                               <div class="horz">
+                                    <button type="submit" class="btn btn-success"  >CHANGE FREET</button>
+                               </div>
+                                   </form>
+                                   <%} else{%>
+                                    <div class="horz">
+                                    <a href="/blog/edit/<%=posts[i]._id%>" id = "edit" class="btn btn-default" >EDIT</a>
+                               </div>
+                                    <%}%>
+                                   <div class="horz">
+                                   <form class=" form-horizontal right" action="/blog/delete/<%=posts[i]._id%>" method="post">
+                                           <button type="submit" class="btn btn-default" >DELETE</button>
+                                   </form>
+                               </div > 
+                               </div>
+                           <%}%>
+    	               </div>
+                           
+                    <%}%>
+                </div>
+            
+            </div>
+        </div>
+        
+    </div>  
+      
+  </body>
+</html>
+
+
