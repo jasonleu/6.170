@@ -10,6 +10,13 @@ var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk('localhost:27017/Freet');
 
+if (process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
+  connection_string = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ':' +
+        process.env.OPENSHIFT_MONGODB_DB_PASSWORD + '@' +
+        process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
+        process.env.OPENSHIFT_MONGODB_DB_PORT + '/Freet';
+}
+
 var routes = require('./routes/index');
 var blog = require('./routes/blog');
 
@@ -69,5 +76,8 @@ app.use(function(err, req, res, next) {
     });
 });
 
+var port = process.env.OPENSHIFT_NODEJS_PORT;
+var ip = process.env.OPENSHIFT_NODEJS_IP;
+app.listen(port || 8080, ip);
 
 module.exports = app;
