@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <head>
+        <title><%= title %></title>
+        <script src="http://code.jquery.com/jquery-latest.min.js"type="text/javascript"></script>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/material/ripples.css" rel="stylesheet">
+      <link href="/material/material.css" rel="stylesheet">
+        <link href="/icons/icons-material-design.css" rel="stylesheet">
+        <link href="//fezvrasta.github.io/snackbarjs/dist/snackbar.min.css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Gochi+Hand|Muli' rel='stylesheet' type='text/css'>
+         <style>
+            .navbar{
+                background-color: green;    
+            }
+            .navbar-brand{
+                font-family: Gochi Hand, sans-serif;
+                font-size: 50px;
+            }
+            .right{
+                text-align:right;    
+            }
+            .rightFloat{
+                float:right;
+            }
+            .leftFloat{
+                float: left;
+                font-size: 150%;
+            }
+            .horz{
+                display:inline-block;    
+            }
+            .editing{
+                font-size: 20px;
+                background-color: #FFF06A;
+                box-shadow: #FFF06A;
+            }
+            .input:focus{
+                back-ground-color:  #FFF06A;  
+            }
+            .sideBySide{
+                overflow: hidden;
+            }
+            .med{
+                font-size: 15px;    
+            }
+         </style>
+  </head>
+  </head>
+  <body>
+    <div>
+        <div class = "container-fluid">
+            <div class = "row">
+                <div class = "col-lg-12">
+                <h1 class = "text-center">RACE WARS</h1>
+                <div class=" well">
+                        <form class=" form-horizontal" action="/postChallenge" method="post">
+                        <fieldset>
+                            <legend>Post a Challenge!</legend>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <textarea class="form-control input" rows="3" id="textArea" name="challenge" placeholder="Post a challenge..."></textarea>
+                                </div>
+                            </div>
+                            <div class="right form-group">
+                                    <button class="btn btn-material-lightgreen">Post</button>
+                            </div>
+
+                        </form>
+                </div>
+                </div>
+            </div>
+        </div>    
+    </div>
+    
+    <div>
+        <div class = "container-fluid">
+            <div class = "row">
+                <div class = "col-sm-4">
+                    <div class = "well">
+                        <h1 class = "text-center"> Asian </h1>
+                        <div class = "row">
+                            <div class= "col-sm-6">
+                                <p class = "text-center"> <b>Challenge #</b></p>
+                            </div>
+                            <div class= "col-sm-6">
+                                <p  class = "text-center"> <b> Score</b></p>
+                            </div>
+                        </div>
+                        <%challenges.forEach(function(challenge,index){%>
+                        <%if (challenge.winner!=""){%>
+                            <div class = "row">
+                                <div class= "col-sm-6">
+                                    <p class = "text-center"> <b><%=challenge.id%></b></p>
+                                </div>
+                                <div class= "col-sm-6">
+                                    <%if (challenge.winner=="Asian"){%>
+                                        <p  class = "text-center"> <b> 5</b></p>
+                                    <%} else{%>
+                                        <p  class = "text-center"> <b> 0</b></p>
+                                    <%}%>
+                                </div>
+                            </div>
+                        <%}%>
+                        <%})%>
+                    </div>
+                </div>
+                <div class = "col-sm-4">
+                    <div class = "well">
+                        <h1 class = "text-center"> White </h1>
+                        <div class = "row">
+                            <div class= "col-sm-6">
+                                <p class = "text-center"> <b>Challenge #</b></p>
+                            </div>
+                            <div class= "col-sm-6">
+                                <p  class = "text-center"> <b> Score</b></p>
+                            </div>
+                        </div>
+                        <%challenges.forEach(function(challenge,index){%>
+                        <%if (challenge.winner!=""){%>
+                            <div class = "row">
+                                <div class= "col-sm-6">
+                                    <p class = "text-center"> <b><%=challenge.id%></b></p>
+                                </div>
+                                <div class= "col-sm-6">
+                                    <%if (challenge.winner=="Asian"){%>
+                                        <p  class = "text-center"> <b> 5</b></p>
+                                    <%} else{%>
+                                        <p  class = "text-center"> <b> 0</b></p>
+                                    <%}%>
+                                </div>
+                            </div>
+                        <%}%>
+                        <%})%>
+                    </div>
+                </div>
+                <div class = "col-sm-4">
+                    <div class = "well">
+                        <h1 class = "text-center"> Minority </h1>
+                        <div class = "row">
+                            <div class= "col-sm-6">
+                                <p class = "text-center"> <b>Challenge #</b></p>
+                            </div>
+                            <div class= "col-sm-6">
+                                <p  class = "text-center"> <b> Score</b></p>
+                            </div>
+                        </div>
+                        <%challenges.forEach(function(challenge,index){%>
+                        <%if (challenge.winner!=""){%>
+                            <div class = "row">
+                                <div class= "col-sm-6">
+                                    <p class = "text-center"> <b><%=challenge.id%></b></p>
+                                </div>
+                                <div class= "col-sm-6">
+                                    <%if (challenge.winner=="Asian"){%>
+                                        <p  class = "text-center"> <b> 5</b></p>
+                                    <%} else{%>
+                                        <p  class = "text-center"> <b> 0</b></p>
+                                    <%}%>
+                                </div>
+                            </div>
+                        <%}%>
+                        <%})%>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </div>
+    
+    <div>
+        <div class = "container-fluid">
+            <div class= "row">
+                <div class = "col-lg-12">
+                <div class = "well">
+                <h1> Current Incomplete Challenges</h1>
+                <div class = "row">
+                        <div class = "col-sm-3 text-center">
+                            <p><b>Challenge Number</b></p>
+                        </div>
+                        <div class = "col-sm-3 text-center">
+                            <p><b>Challenge</b></p>
+                        </div>
+                        <% if (master!=""){%>
+                        <div class = "col-sm-6">
+                            <p><b> Who Won?</b></p>
+                        </div>
+                        <%}%>
+                </div>
+                <%challenges.forEach(function(challenge,index){%>
+                <%if (challenge.winner==""){%>
+                    <div class = "row">
+                        <div class = "col-sm-3 text-center">
+                            <p><%=challenge._id %></p>
+                        </div>
+                        <div class = "col-sm-3 text-center">
+                            <p><%= challenge.text%></p>
+                        </div>
+                        <% if (master!=""){%>
+                        <div class = "col-sm-3 text-center">
+                            <form class = "form-horizontal" action="/winner/<%=challenge._id%>" method="post">
+                            <fieldset>
+                            <div class = "text-center sideBySide">
+                            <div class = "leftFloat">
+                            <select name = "winnerID" class="form-control" id="select">
+                                <option>Asian</option>
+                                <option>White</option>
+                                <option>Minority</option>
+                            </select>
+                            </div>
+                            <div class = "rightFloat">
+                            <button type= "submit" class = "btn btn-primary">Submit</button>
+                            </div>
+                            </div>
+                            </fieldset>
+                            </form>
+                        </div>
+                        <%}%>
+                    </div>
+                <%}%>
+                <%})%>
+                </div>
+                </div>
+            </div>
+        </div>  
+        
+    </div>
+    <div class = "container-fluid">
+            <div class= "row">
+                <div class = "col-lg-12">
+                <div class = "well">
+                <h1> Completed Challenges</h1>
+                <div class = "row">
+                        <div class = "col-sm-3 text-center">
+                            <p><b>Challenge Number</b></p>
+                        </div>
+                        <div class = "col-sm-3 text-center">
+                            <p><b>Challenge</b></p>
+                        </div>
+                    <div class = "col-sm-3 text-center">
+                            <p><b>Winner</b></p>
+                        </div>
+                </div>
+                <%challenges.forEach(function(challenge,index){%>
+                <%if (challenge.winner!=""){%>
+                    <div class = "row">
+                        <div class = "col-sm-3 text-center">
+                            <p><%=challenge._id %></p>
+                        </div>
+                        <div class = "col-sm-3 text-center">
+                            <p><%= challenge.text%></p>
+                        </div>
+                        <div class = "col-sm-3 text-center">
+                            <p><%= challenge.winner%></p>
+                        </div>
+                    </div>
+                <%}%>
+                <%})%>
+                </div>
+                </div>
+            </div>
+        </div>    
+        
+  </body>
+</html>
